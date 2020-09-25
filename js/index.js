@@ -1,0 +1,5 @@
+'user strict';
+
+window.onload = () =>{
+
+}
