@@ -55,7 +55,7 @@ app.insertAdjacentElement("beforeend", createTable);
 
 const submitForm = (e) => {
   e.preventDefault();
-// to clear tables if to be submitting again
+  // to clear tables if to be submitting again
   createDivLatLong.innerHTML = "";
   createDivLoc.innerHTML = "";
   createDiv.innerHTML = "";
@@ -66,7 +66,8 @@ const submitForm = (e) => {
     "https://api.mapbox.com/geocoding/v5/mapbox.places/" +
     encodeURIComponent(getAddress.value) +
     ".json?access_token=pk.eyJ1IjoiYWltZWVseW5ucmFtaXJlejMiLCJhIjoiY2s3MXpjdXhoMGF3YjNtbXl6em9nMWRtbCJ9.atrDeTFuHq0gGUwi5Kq1_w";
-
+  let featuresLat = "";
+  let featuresLong = "";
   class Geocode {
     constructor(url) {
       this.url = url;
@@ -75,43 +76,55 @@ const submitForm = (e) => {
       fetch(this.url)
         .then((response) => response.json())
         .then((data) => {
-          let featuresLat = data.features[0].center[1];
-          let featuresLong = data.features[0].center[0];
-        //Retrieve Numerical data. Example: Longitude And Latitude, Address, Temperature.
-          let locations = data.features[0].place_name;
-          createDivLatLong.innerHTML = `<p><strong>GeoLocation: </strong><br/> latitude: ${featuresLat}, longitude:${featuresLong}</p>`;
-          createDivLoc.innerHTML = `<p> Location: ${locations} </p>`;
-       
-          let url =
-            "https://api.weather.gov/points/" +
-            data.features[0].center[1] +
-            "," +
-            data.features[0].center[0];
+          mapbox(data);
+          //forecast(data);
+          //return data;
+        });
+    }
+    loadForecast() {
+      fetch(this.url).then((data2) => {
+        forecast(data2);
+        //return data;
+      });
+    }
+  }
+  let getFetch = new Geocode(url);
+  getFetch.loadData();
 
-        //   let options = {
-        //     header: {
-        //       "Access-Control-Allow-Origin": "http://localhost:5500",
-        //     },
-        //   };
-          fetch(url)
-            .then((response) => response.json())
-            .then((weather) => {
-            //   console.log(weather);
-            
-              createDiv.innerHTML =
-                "<h4> Relative Location: " +
-                weather.properties.relativeLocation.properties.city +
-                ", " +
-                weather.properties.relativeLocation.properties.state +
-                "</h4>";
+  const mapbox = (data) => {
+    featuresLat = data.features[0].center[1];
+    featuresLong = data.features[0].center[0];
+    //Retrieve Numerical data. Example: Longitude And Latitude, Address, Temperature.
+    let locations = data.features[0].place_name;
+    createDivLatLong.innerHTML = `<p><strong>GeoLocation: </strong><br/> latitude: ${featuresLat}, longitude:${featuresLong}</p>`;
+    createDivLoc.innerHTML = `<p> Location: ${locations} </p>`;
+    let url =
+      "https://api.weather.gov/points/" + featuresLat + "," + featuresLong;
+    //get forecast once
+    let getFetchForecast = new Geocode(url);
 
-              let forecastUrl = weather.properties.forecast;
+    getFetchForecast.loadForecast(url);
+  };
 
-              fetch(forecastUrl)
-                .then((response) => response.json())
-                .then((weatherDaily) => {
-                
-                  createTable.innerHTML += `
+  const forecast = (data) => {
+    // console.log(data.url)
+    fetch(data.url)
+      .then((response) => response.json())
+      .then((weather) => {
+        //   console.log(weather);
+        createDiv.innerHTML =
+          "<h4> Relative Location: " +
+          weather.properties.relativeLocation.properties.city +
+          ", " +
+          weather.properties.relativeLocation.properties.state +
+          "</h4>";
+
+        let forecastUrl = weather.properties.forecast;
+
+        fetch(forecastUrl)
+          .then((response) => response.json())
+          .then((weatherDaily) => {
+            createTable.innerHTML += `
                         <thead>
                           <tr>
                             <th>Image</th>
@@ -127,66 +140,56 @@ const submitForm = (e) => {
                           </tr>
                         </thead>
                       `;
-                  for (let i = 0; i < weatherDaily.properties.periods.length; i++) {
-                    let createTr = document.createElement("tr");
-                    createTable.insertAdjacentElement("beforeend", createTr);
+            for (let i = 0; i < weatherDaily.properties.periods.length; i++) {
+              let createTr = document.createElement("tr");
+              createTable.insertAdjacentElement("beforeend", createTr);
 
-                    let start = new Date(
-                      weatherDaily.properties.periods[i].startTime
-                    );
-                    let ended = new Date(
-                      weatherDaily.properties.periods[i].endTime
-                    );
-                    createTr.innerHTML +=
-                      //Retrieve Images.
-                      "<img src='" +
-                      weatherDaily.properties.periods[i].icon +
-                      "'style='width:100px;'>" +
-                      "<td>" +
-                      weatherDaily.properties.periods[i].number +
-                      " </td> " +
-                      "<td>" +
-                      weatherDaily.properties.periods[i].name +
-                      " </td> " +
-                      "<td>" +
-                       weatherDaily.properties.periods[i].shortForecast +
-                      "</td>"+
-                      "<td>" +
-                      start +
-                      " </td><td>" +
-                      ended +
-                      " </td><td>" +
-                      weatherDaily.properties.periods[i].temperature +
-                      " " +
-                      weatherDaily.properties.periods[i].temperatureUnit +
-                      "°" +
-                      "</td>" +
-                      "<td>" +
-                      weatherDaily.properties.periods[i].detailedForecast +
-                      "</td>";
+              let start = new Date(
+                weatherDaily.properties.periods[i].startTime
+              );
+              let ended = new Date(weatherDaily.properties.periods[i].endTime);
+              createTr.innerHTML +=
+                //Retrieve Images.
+                "<img src='" +
+                weatherDaily.properties.periods[i].icon +
+                "'style='width:100px;'>" +
+                "<td>" +
+                weatherDaily.properties.periods[i].number +
+                " </td> " +
+                "<td>" +
+                weatherDaily.properties.periods[i].name +
+                " </td> " +
+                "<td>" +
+                weatherDaily.properties.periods[i].shortForecast +
+                "</td>" +
+                "<td>" +
+                start +
+                " </td><td>" +
+                ended +
+                " </td><td>" +
+                weatherDaily.properties.periods[i].temperature +
+                " " +
+                weatherDaily.properties.periods[i].temperatureUnit +
+                "°" +
+                "</td>" +
+                "<td>" +
+                weatherDaily.properties.periods[i].detailedForecast +
+                "</td>";
+            }
 
-
-                  }
-
-                  let getTableFocus = document.querySelector("table");
-                  getTableFocus.id ="tableFocus";
-                  let getFocus = document.getElementById("tableFocus");
-                  //console.log(getFocus.scrollIntoView(true))
-                     getFocus.scrollIntoView(true);
-
-                });
-            })
-            .catch(function () {
-              console.log("error");
-                 getAddress.value = "";
-                  getAddress.placeholder =
-                   "Sorry that location is not found, please try again.";
-               
-            });
-        });
-    }
-  }
-  let getFetch = new Geocode(url);
-  getFetch.loadData();
+            let getTableFocus = document.querySelector("table");
+            getTableFocus.id = "tableFocus";
+            let getFocus = document.getElementById("tableFocus");
+            //console.log(getFocus.scrollIntoView(true))
+            getFocus.scrollIntoView(true);
+          });
+      })
+      .catch(function () {
+        console.log("error");
+        getAddress.value = "";
+        getAddress.placeholder =
+          "Sorry that location is not found, please try again.";
+      });
+  };
 };
 createButtonSubmit.addEventListener("click", submitForm);
