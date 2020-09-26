@@ -165,7 +165,15 @@ const submitForm = (e) => {
                       weatherDaily.properties.periods[i].detailedForecast +
                       "</td>";
 
+
                   }
+
+                  let getTableFocus = document.querySelector("table");
+                  getTableFocus.id ="tableFocus";
+                  let getFocus = document.getElementById("tableFocus");
+                  //console.log(getFocus.scrollIntoView(true))
+                     getFocus.scrollIntoView(true);
+
                 });
             })
             .catch(function () {
