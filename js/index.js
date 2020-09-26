@@ -1,24 +1,25 @@
 "user strict";
-const include = (file) => {
-  let script = document.createElement("script");
-  script.src = file;
-  //script.crossorigin = "anonymous";
-  script.defer = true;
+// const include = (file) => {
+//   let script = document.createElement("script");
+//   script.src = file;
+//   //script.crossorigin = "anonymous";
+//   script.defer = true;
 
-  getScript(script);
-};
-const getScript = (script) => {
-  let htmlScript = document.querySelector("body");
-  htmlScript.insertAdjacentElement("beforeend", script);
-};
-//because i really liked the icons
-include("https://kit.fontawesome.com/68ebcc4019.js");
+//   getScript(script);
+// };
+// const getScript = (script) => {
+//   let htmlScript = document.querySelector("body");
+//   htmlScript.insertAdjacentElement("beforeend", script);
+// };
+// //because i really liked the icons
+// include("https://kit.fontawesome.com/68ebcc4019.js");
 
 /**
  * Create form fields
  */
 let app = document.getElementById("app");
-app.innerHTML += `<div> <strong>Open API: Project + Portfolio Demo</strong></div>`;
+//Page must contain at least one Heading (H1) element.
+app.innerHTML += `<h1> <strong>Open API: Project + Portfolio Demo</strong></h1>`;
 
 let createForm = document.createElement("form");
 let createInput = document.createElement("input");
@@ -75,7 +76,7 @@ const submitForm = (e) => {
         .then((data) => {
           let featuresLat = data.features[0].center[1];
           let featuresLong = data.features[0].center[0];
-
+        //Retrieve Numerical data. Example: Longitude And Latitude, Address, Temperature.
           let locations = data.features[0].place_name;
           createDivLatLong.innerHTML = `<p><strong>GeoLocation: </strong><br/> latitude: ${featuresLat}, longitude:${featuresLong}</p>`;
           createDivLoc.innerHTML = `<p> Location: ${locations} </p>`;
