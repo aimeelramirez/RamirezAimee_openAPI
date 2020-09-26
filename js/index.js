@@ -29,6 +29,7 @@ let createButtonSubmit = document.createElement("button");
 app.insertAdjacentElement("beforeend", createForm);
 createForm.insertAdjacentElement("beforeend", createInput);
 createForm.insertAdjacentElement("beforeend", createButtonSubmit);
+createButtonSubmit.type = "submit";
 createButtonSubmit.innerHTML += `Submit`;
 
 /**
@@ -80,7 +81,7 @@ const submitForm = (e) => {
           let locations = data.features[0].place_name;
           createDivLatLong.innerHTML = `<p><strong>GeoLocation: </strong><br/> latitude: ${featuresLat}, longitude:${featuresLong}</p>`;
           createDivLoc.innerHTML = `<p> Location: ${locations} </p>`;
-
+       
           let url =
             "https://api.weather.gov/points/" +
             data.features[0].center[1] +
@@ -169,6 +170,9 @@ const submitForm = (e) => {
             })
             .catch(function () {
               console.log("error");
+                 getAddress.value =
+                   "Sorry that location is not found, please try again.";
+               
             });
         });
     }

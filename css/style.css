@@ -1,177 +1,181 @@
-
 td {
-    border: 1px solid #333;
-    color:white;
-    
+  border: 1px solid #333;
+  color: white;
 }
 
-
 thead {
-    background-color: #333;
-    color: #fff;
+  background-color: #333;
+  color: #fff;
 }
 
 /* TYPOGRAPHY DEFAULTS
 ====================================================================== */
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800');
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800");
 /* fontawesome update */
 @import url("https://use.fontawesome.com/releases/v5.8.1/css/solid.css");
-  
+
 body {
-	padding: 0 2rem;	
-	font: 1rem/1.2 'Open Sans', Helvetica, Arial, sans-serif;
-	background: #222222;
-	color: #888888;
+  padding: 0 2rem;
+  font: 1rem/1.2 "Open Sans", Helvetica, Arial, sans-serif;
+  background: #222222;
+  color: #888888;
 }
 
-h2, h3 { font-size: 2.4rem; }
+h2,
+h3 {
+  font-size: 2.4rem;
+}
 h2 {
-	text-transform: uppercase;
-	border-bottom: 2px solid #333333;
-	margin-bottom: 2rem;
-	font-weight: 300;
-	letter-spacing: -0.15rem;
-	text-align: center;
-	color: #555555;
+  text-transform: uppercase;
+  border-bottom: 2px solid #333333;
+  margin-bottom: 2rem;
+  font-weight: 300;
+  letter-spacing: -0.15rem;
+  text-align: center;
+  color: #555555;
 }
 @media (min-width: 800px) {
-	h2 { 
-		font-size: 3.2rem; 
-		text-align: left;
-	}
+  body {
+    max-width: 100%;
+    height: auto;
+  }
+  h2 {
+    font-size: 3.2rem;
+    text-align: left;
+  }
 }
 
-h2 strong { 
-	font-weight: 800; 
-	color: #888888;
+h2 strong {
+  font-weight: 800;
+  color: #888888;
 }
-h4 { 
-	font-weight: 800; 
-	line-height: 1.25;
-	color: #f0f0f0;
+h4 {
+  font-weight: 800;
+  line-height: 1.25;
+  color: #f0f0f0;
 }
-p + p { 
-	margin-top: 2rem; 
-	/* fix for error label  */
-	position: relative;
+p + p {
+  margin-top: 2rem;
+  /* fix for error label  */
+  position: relative;
 }
 
-h3{
-    color: black;
-text-transform: uppercase;
-	border-bottom: 2px solid #333333;
-	margin-bottom: 2rem;
-	font-weight: 300;
-	letter-spacing: -0.15rem;
-	text-align: center;
+h3 {
+  color: black;
+  text-transform: uppercase;
+  border-bottom: 2px solid #333333;
+  margin-bottom: 2rem;
+  font-weight: 300;
+  letter-spacing: -0.15rem;
+  text-align: center;
 }
 /* FORM
 ====================================================================== */
 form {
-	position: relative;
-	max-width: 600px;
-	padding: 3rem;
-	margin: 12rem auto 5rem auto;	
-	background: #f0f0f0;	
+  position: relative;
+  max-width: 600px;
+  padding: 3rem;
+  margin: 12rem auto 5rem auto;
+  background: #f0f0f0;
 }
 form h2 {
-	width: 100%;
-	position: absolute;
-	left: 0;
-	bottom: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 100%;
 }
 
 /* LABELS
 ====================================================================== */
 label:not(.error) {
-	display: none;
+  display: none;
 }
 
 /* INPUTS
 ====================================================================== */
 input,
 textarea {
-	width: 100%;
-	padding: 1rem 0;
-	background: none;
-	border-bottom: 1px solid #dddddd;	
-	font-size: 1.4rem;
-	font-weight: 700;
-	color: rgba(0,0,0,0.75);	
-	transition: all 0.5s;
+  width: 100%;
+  padding: 1rem 0;
+  background: none;
+  border-bottom: 1px solid #dddddd;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.75);
+  transition: all 0.5s;
 }
 input:focus,
 textarea:focus {
-	border-bottom: 1px solid #aaaaaa;
+  border-bottom: 1px solid #aaaaaa;
 }
 input::placeholder,
 textarea::placeholder {
-	color: #aaaaaa;
-	font-weight: 400;
+  color: #aaaaaa;
+  font-weight: 400;
 }
-textarea { height: 15rem; }
+textarea {
+  height: 15rem;
+}
 
 /* SUBMIT
 ====================================================================== */
-button[type='submit'].disabled {
-	cursor: not-allowed;
-	opacity: 0.15
+
+button[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  background: #222222;
+  color: #f0f0f0;
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-weight: 900;
+  cursor: pointer;
+  transition: all 0.5s;
 }
-button[type='submit'] {
-	display: block;
-	width: 100%;
-	padding: 1rem;
-	background: #222222;
-	color: #f0f0f0;
-	border-radius: 3px;
-	text-transform: uppercase;
-	font-weight: 900;
-	cursor: pointer;
-	transition: all 0.5s;
+button[type="submit"]:not(.disabled):hover {
+  background: #333333;
+  transform: scale(1.025);
 }
-button[type='submit']:not(.disabled):hover { 
-	background: #333333;
-	transform: scale(1.025); 
-}
-button[type='submit']:not(.disabled):active { 
-	background: #111111;
-	transform: scale(1.05); 
+button[type="submit"]:not(.disabled):active {
+  background: #111111;
+  transform: scale(1.05);
 }
 
 /* ERROR LABEL
 ====================================================================== */
 @keyframes bounce-right {
-	0% { 
-		transform: translateY(20rem); 
-		opacity: 0;
-	}
-	50% { opacity: 0.25; }
-	100% { 
-		transform: translateY(0); 
-		opacity: 1;
-	}
+  0% {
+    transform: translateY(20rem);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.25;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .notification {
-	display: inline-block;
-	position: absolute;
-	top: 0;
-	right: 0;
-	padding: 0.5rem;
-	border: 2px solid blue;
-	font-size: 1.4rem;
-	color: blue;
-	animation: bounce-right 1s;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.5rem;
+  border: 2px solid blue;
+  font-size: 1.4rem;
+  color: blue;
+  animation: bounce-right 1s;
 }
 .notification::before {
-	
-	/* fontawesome update */
-	font-family: 'Font Awesome 5 Free'; 
-	font-size: 2.1rem;
-	display: block;
-	position: absolute;
-	top: 0.5rem;
-	left: -3rem;
-	/* font: 2.1rem FontAwesome; */
-	color: blue;
+  /* fontawesome update */
+  font-family: "Font Awesome 5 Free";
+  font-size: 2.1rem;
+  display: block;
+  position: absolute;
+  top: 0.5rem;
+  left: -3rem;
+  /* font: 2.1rem FontAwesome; */
+  color: blue;
 }
