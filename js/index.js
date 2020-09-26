@@ -11,6 +11,9 @@ const getScript = (script) => {
   let htmlScript = document.querySelector("body");
   htmlScript.insertAdjacentElement("beforeend", script);
 };
+//because i really liked the icons
+include("https://kit.fontawesome.com/68ebcc4019.js");
+
 /**
  * Create form fields
  */
@@ -31,6 +34,12 @@ createButtonSubmit.innerHTML += `Submit`;
  * Create table and get information
  * from https://weather-gov.github.io/api/gridpoints
  * api.weather.gov
+ * Retrieve text (string) based data.
+
+Example: User Avatar, Map Imagery, Logos
+Retrieve Numerical data.
+Example: Longitude And Latitude, Address, Temperature.
+
  */
 let createDivLatLong = document.createElement("div");
 createDivLatLong.id = "latLong";
@@ -86,6 +95,7 @@ const submitForm = (e) => {
             .then((response) => response.json())
             .then((weather) => {
             //   console.log(weather);
+            
               createDiv.innerHTML =
                 "<h4> Relative Location: " +
                 weather.properties.relativeLocation.properties.city +
@@ -98,6 +108,7 @@ const submitForm = (e) => {
               fetch(forecastUrl)
                 .then((response) => response.json())
                 .then((weatherDaily) => {
+                
                   createTable.innerHTML += `
                         <thead>
                           <tr>
@@ -105,9 +116,11 @@ const submitForm = (e) => {
   
                             <th >#</th>
                             <th >Day</th>
+                            <th> Short Forecast</th>
                             <th>Start Time</th>
                             <th>End Time</th>
                             <th >Temperature</th>
+                            <th >Detailed Forecast</th>
 
                           </tr>
                         </thead>
@@ -123,6 +136,7 @@ const submitForm = (e) => {
                       weatherDaily.properties.periods[i].endTime
                     );
                     createTr.innerHTML +=
+                      //Retrieve Images.
                       "<img src='" +
                       weatherDaily.properties.periods[i].icon +
                       "'style='width:100px;'>" +
@@ -133,6 +147,9 @@ const submitForm = (e) => {
                       weatherDaily.properties.periods[i].name +
                       " </td> " +
                       "<td>" +
+                       weatherDaily.properties.periods[i].shortForecast +
+                      "</td>"+
+                      "<td>" +
                       start +
                       " </td><td>" +
                       ended +
@@ -141,6 +158,9 @@ const submitForm = (e) => {
                       " " +
                       weatherDaily.properties.periods[i].temperatureUnit +
                       "°" +
+                      "</td>" +
+                      "<td>" +
+                      weatherDaily.properties.periods[i].detailedForecast +
                       "</td>";
 
                   }

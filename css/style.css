@@ -152,19 +152,19 @@ button[type='submit']:not(.disabled):active {
 	}
 }
 
-.error {
+.notification {
 	display: inline-block;
 	position: absolute;
 	top: 0;
 	right: 0;
 	padding: 0.5rem;
-	border: 2px solid #c0392b;
+	border: 2px solid blue;
 	font-size: 1.4rem;
-	color: #c0392b;
+	color: blue;
 	animation: bounce-right 1s;
 }
-.error::before {
-	content: "\f071";
+.notification::before {
+	
 	/* fontawesome update */
 	font-family: 'Font Awesome 5 Free'; 
 	font-size: 2.1rem;
@@ -173,5 +173,5 @@ button[type='submit']:not(.disabled):active {
 	top: 0.5rem;
 	left: -3rem;
 	/* font: 2.1rem FontAwesome; */
-	color: #c0392b;
+	color: blue;
 }
