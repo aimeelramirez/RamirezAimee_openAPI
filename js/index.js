@@ -178,7 +178,8 @@ const submitForm = (e) => {
             })
             .catch(function () {
               console.log("error");
-                 getAddress.value =
+                 getAddress.value = "";
+                  getAddress.placeholder =
                    "Sorry that location is not found, please try again.";
                
             });
