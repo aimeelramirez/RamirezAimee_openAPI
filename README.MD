@@ -17,12 +17,13 @@ URL of API source:
 - https://darksky.net/dev/docs
     - hosted on: https://dry-earth-81823.herokuapp.com
 
-
+* This is just an extra credit API, I thought it was neat to get. 
 ## DarkSky API
 
 | Name of API       | URL of API source |  Data |
 | ------------- |:-------------:| -------------------:|
 | DarkSky    |  `https://api.darksky.net/forecast/<api_key>/{latitude},{longitude};`, | Numerial |
+* This is just an extra credit API, I thought it was neat to get. 
 
 ## Mapping API
 
