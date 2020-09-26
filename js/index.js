@@ -77,7 +77,6 @@ const submitForm = (e) => {
         .then((response) => response.json())
         .then((data) => {
           mapbox(data);
-          //forecast(data);
           //return data;
         });
     }
