@@ -47,11 +47,16 @@ const submitForm = (e) => {
   createTable.innerHTML = "";
     let getAddress = document.getElementById("address");
 
-fetch(
-  "https://dry-earth-81823.herokuapp.com/weather?address=" +
-    encodeURIComponent(getAddress.value))
-.then((response) => {
-  console.log(response);
+  const location = getAddress.value;
+fetch("https://dry-earth-81823.herokuapp.com/weather?address=" + location, {
+  mode: "no-cors",
+  header: {
+    "Access-Control-Allow-Origin": "*",
+  },
+}).then((response) => {
+
+    console.log(response);
+  
 });
 
   const url =
