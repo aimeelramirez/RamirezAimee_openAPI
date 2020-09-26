@@ -7,6 +7,14 @@ thead {
   background-color: #333;
   color: #fff;
 }
+#message{
+  position: relative;
+  max-width: 600px;
+  padding: 3rem;
+  margin: 1rem auto;
+  background: #f0f0f0;
+  text-align: center;
+}
 
 /* TYPOGRAPHY DEFAULTS
 ====================================================================== */
@@ -15,7 +23,7 @@ thead {
 @import url("https://use.fontawesome.com/releases/v5.8.1/css/solid.css");
 
 body {
-  padding: 0 2rem;
+  /* padding: 0 2rem; */
   font: 1rem/1.2 "Open Sans", Helvetica, Arial, sans-serif;
   background: #222222;
   color: #888888;
@@ -52,7 +60,7 @@ h2 strong {
 h4 {
   font-weight: 800;
   line-height: 1.25;
-  color: #f0f0f0;
+  color: black;
 }
 p + p {
   margin-top: 2rem;
@@ -75,7 +83,7 @@ form {
   position: relative;
   max-width: 600px;
   padding: 3rem;
-  margin: 12rem auto 5rem auto;
+  margin: 1rem auto;
   background: #f0f0f0;
 }
 form h2 {
@@ -157,16 +165,19 @@ button[type="submit"]:not(.disabled):active {
   }
 }
 
+
 .notification {
   display: inline-block;
   position: absolute;
   top: 0;
   right: 0;
   padding: 0.5rem;
-  border: 2px solid blue;
+  border: 2px solid #333333;
   font-size: 1.4rem;
-  color: blue;
+  color: #333333;
+  background-color:white;
   animation: bounce-right 1s;
+ 
 }
 .notification::before {
   /* fontawesome update */
@@ -177,5 +188,6 @@ button[type="submit"]:not(.disabled):active {
   top: 0.5rem;
   left: -3rem;
   /* font: 2.1rem FontAwesome; */
-  color: blue;
+  color:#333333;
+ 
 }
