@@ -8,12 +8,21 @@ Live Demo: https://alramirez1.github.io/RamirezAimee_openAPI/
 Name of API:
 - MapBox 
 - National Weather Service 
+- DarkSky 
 
 
 URL of API source:  
 - https://docs.mapbox.com/help/tutorials/local-search-geocoding-api/ 
 - https://weather-gov.github.io/api/gridpoints
+- https://darksky.net/dev/docs
+    - hosted on: https://dry-earth-81823.herokuapp.com
 
+
+## DarkSky API
+
+| Name of API       | URL of API source |  Data |
+| ------------- |:-------------:| -------------------:|
+| DarkSky    |  `https://api.darksky.net/forecast/<api_key>/{latitude},{longitude};`, | Numerial |
 
 ## Mapping API
 

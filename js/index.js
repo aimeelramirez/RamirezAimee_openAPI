@@ -1,4 +1,16 @@
 "user strict";
+//  const include = (file) => {
+//    let script = document.createElement("script");
+//    script.src = file;
+//    //script.crossorigin = "anonymous";
+//    script.defer = true;
+//    getScript(script);
+//  };
+//  const getScript = (script) => {
+//    let htmlScript = document.querySelector("body");
+//    htmlScript.insertAdjacentElement("beforeend", script);
+//  };
+//  include("https://kit.fontawesome.com/68ebcc4019.js");
 /**
  * Create form fields
  */
@@ -28,37 +40,27 @@ Retrieve Numerical data.
 Example: Longitude And Latitude, Address, Temperature.
 
  */
-let createDivLatLong = document.createElement("div");
-createDivLatLong.id = "latLong";
-app.insertAdjacentElement("beforeend", createDivLatLong);
-let createDivLoc = document.createElement("div");
-app.insertAdjacentElement("beforeend", createDivLoc);
+// let createDivLatLong = document.createElement("div");
+// createDivLatLong.id = "latLong";
+// app.insertAdjacentElement("beforeend", createDivLatLong);
+// let createDivLoc = document.createElement("div");
+// app.insertAdjacentElement("beforeend", createDivLoc);
 let createDiv = document.createElement("div");
 app.insertAdjacentElement("beforeend", createDiv);
+
 let createTable = document.createElement("table");
 app.insertAdjacentElement("beforeend", createTable);
 
 const submitForm = (e) => {
   e.preventDefault();
   // to clear tables if to be submitting again
-  createDivLatLong.innerHTML = "";
-  createDivLoc.innerHTML = "";
+//   createDivLatLong.innerHTML = "";
+//   createDivLoc.innerHTML = "";
   createDiv.innerHTML = "";
   createTable.innerHTML = "";
     let getAddress = document.getElementById("address");
 
-  const location = getAddress.value;
-fetch("https://dry-earth-81823.herokuapp.com/weather?address=" + location, {
-  mode: "no-cors",
-  header: {
-    "Access-Control-Allow-Origin": "*",
-  },
-}).then((response) => {
-
-    console.log(response);
-  
-});
-
+ 
   const url =
     "https://api.mapbox.com/geocoding/v5/mapbox.places/" +
     encodeURIComponent(getAddress.value) +
@@ -75,13 +77,26 @@ fetch("https://dry-earth-81823.herokuapp.com/weather?address=" + location, {
         .then((data) => {
           mapbox(data);
           //return data;
+        })
+        .catch(function () {
+          console.log("error");
+          getAddress.value = "";
+          getAddress.placeholder =
+            "Sorry that location is not found, please try again.";
         });
     }
     loadForecast() {
-      fetch(this.url).then((data2) => {
-        forecast(data2);
-        //return data;
-      });
+      fetch(this.url)
+        .then((data2) => {
+          forecast(data2);
+          //return data;
+        })
+        .catch(function () {
+          console.log("error");
+          getAddress.value = "";
+          getAddress.placeholder =
+            "Sorry that location is not found, please try again.";
+        });
     }
   }
   let getFetch = new Geocode(url);
@@ -92,8 +107,8 @@ fetch("https://dry-earth-81823.herokuapp.com/weather?address=" + location, {
     featuresLong = data.features[0].center[0];
     //Retrieve Numerical data. Example: Longitude And Latitude, Address, Temperature.
     let locations = data.features[0].place_name;
-    createDivLatLong.innerHTML = `<p><strong>GeoLocation: </strong><br/> latitude: ${featuresLat}, longitude:${featuresLong}</p>`;
-    createDivLoc.innerHTML = `<p> Location: ${locations} </p>`;
+    createForm.innerHTML += `<h4><strong>GeoLocation: </strong><br/> latitude: ${featuresLat}, longitude:${featuresLong}</h4>`;
+    createForm.innerHTML += `<h4> Location: ${locations} </h4>`;
     let url =
       "https://api.weather.gov/points/" + featuresLat + "," + featuresLong;
     //get forecast once
@@ -108,11 +123,11 @@ fetch("https://dry-earth-81823.herokuapp.com/weather?address=" + location, {
       .then((response) => response.json())
       .then((weather) => {
         //   console.log(weather);
-        createDiv.innerHTML =
+        createForm.innerHTML +=
           "<h4> Relative Location: " +
           weather.properties.relativeLocation.properties.city +
           ", " +
-          weather.properties.relativeLocation.properties.state +
+          weather.properties.relativeLocation.properties.state + 
           "</h4>";
 
         let forecastUrl = weather.properties.forecast;
@@ -172,12 +187,34 @@ fetch("https://dry-earth-81823.herokuapp.com/weather?address=" + location, {
                 weatherDaily.properties.periods[i].detailedForecast +
                 "</td>";
             }
+const location = getAddress.value;
+fetch("https://dry-earth-81823.herokuapp.com/weather?address=" + location)
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data);
+    // createDiv.setAttribute("id", "messageId");
+    // let getIdMessage = document.getElementById("messageId");
+    createDiv.innerHTML +=
+      "<div id='message' style='width:50%;'>" +
+      " <h3>Daily Forecast:</h3> <br/>" +
+      data.forecast +
+      "<h3>Location: </h3>" +
+      data.location +
+      "<h3/>Address: </h3>" +
+      data.address.toUpperCase();
+    +"</div>";
+  })
 
-            let getTableFocus = document.querySelector("table");
-            getTableFocus.id = "tableFocus";
-            let getFocus = document.getElementById("tableFocus");
+//  setTimeout(() => {
+//    // console.log(document.querySelector("notification"));
+//    createDiv.innerHTML = "";
+//  }, 5000);
+   
+           // let getTableFocus = document.querySelector("table");
+           // getTableFocus.id = "tableFocus";
+           // let getFocus = document.getElementById("tableFocus");
             //console.log(getFocus.scrollIntoView(true))
-            getFocus.scrollIntoView(true);
+           // getFocus.scrollIntoView(true);
           });
       })
       .catch(function () {
@@ -186,6 +223,25 @@ fetch("https://dry-earth-81823.herokuapp.com/weather?address=" + location, {
         getAddress.placeholder =
           "Sorry that location is not found, please try again.";
       });
+
+
+
   };
+
+  let getWindow = () => {
+    console.log("click");
+    // let getClose = document.querySelector("notification");
+    // if (getClose != null) {
+    //   if (getClose.style.display == "block") {
+    //     getClose.style.display = "none";
+    //   } else {
+    //     getClose.style.display = "block";
+    //   }
+    //   return false;
+  };
+
+
+
 };
+
 createButtonSubmit.addEventListener("click", submitForm);
