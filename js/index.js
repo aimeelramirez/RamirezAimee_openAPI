@@ -45,8 +45,15 @@ const submitForm = (e) => {
   createDivLoc.innerHTML = "";
   createDiv.innerHTML = "";
   createTable.innerHTML = "";
+    let getAddress = document.getElementById("address");
 
-  let getAddress = document.getElementById("address");
+fetch(
+  "https://dry-earth-81823.herokuapp.com/weather?address=" +
+    encodeURIComponent(getAddress.value))
+.then((response) => {
+  console.log(response);
+});
+
   const url =
     "https://api.mapbox.com/geocoding/v5/mapbox.places/" +
     encodeURIComponent(getAddress.value) +
