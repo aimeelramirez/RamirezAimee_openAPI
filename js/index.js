@@ -1,16 +1,5 @@
 "user strict";
-//  const include = (file) => {
-//    let script = document.createElement("script");
-//    script.src = file;
-//    //script.crossorigin = "anonymous";
-//    script.defer = true;
-//    getScript(script);
-//  };
-//  const getScript = (script) => {
-//    let htmlScript = document.querySelector("body");
-//    htmlScript.insertAdjacentElement("beforeend", script);
-//  };
-//  include("https://kit.fontawesome.com/68ebcc4019.js");
+
 /**
  * Create form fields
  */
