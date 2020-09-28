@@ -10,10 +10,11 @@ td {
 #app > div {
   display: flex;
   flex-direction: row;
+  margin: auto;
 }
 div > #message {
   background: #f0f0f0;
-  font-size: 1rem;
+  font-size: 0.6rem;
   flex: 1 auto;
   text-align: center;
   margin: 5px;
@@ -190,13 +191,15 @@ button[type="submit"]:not(.disabled):active {
     padding: 2rem;
     margin: 0rem;
   }
+
   #app > div {
-    display: flex;
-    flex-direction: row;
-    padding: 5px;
-    max-width: 80%;
     font-size: 2.1rem;
   }
+  h2,
+  h3 {
+    font-size: 1rem;
+  }
+
   thead,
   th {
     background-color: #333;
@@ -211,6 +214,6 @@ button[type="submit"]:not(.disabled):active {
   td {
     background-color: white;
     color: #333;
-       font-size: .9rem;
+    font-size: 0.9rem;
   }
 }

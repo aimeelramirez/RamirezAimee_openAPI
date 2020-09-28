@@ -84,7 +84,7 @@ Example: Longitude And Latitude, Address, Temperature.
       //Retrieve Numerical data. Example: Longitude And Latitude, Address, Temperature.
       locations = data.features[0].place_name;
       createDiv.innerHTML +=
-        `<div id='message'><h3 > Coordinates: </h3 > latitude: ${featuresLat} <br/> longitude:${featuresLong} <h3 >Location:</h3 > ${locations} </div>`;
+        `<div id='message'><h3> Coordinates: </h3 > latitude: ${featuresLat} <br/> longitude:${featuresLong} <h3 >Location:</h3 > ${locations} </div>`;
       let url =
         "https://api.weather.gov/points/" + featuresLat + "," + featuresLong;
       //get forecast once
@@ -104,7 +104,7 @@ Example: Longitude And Latitude, Address, Temperature.
             weather.properties.relativeLocation.properties.city +
             ", " +
             weather.properties.relativeLocation.properties.state +
-            `<img src= "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/${featuresLong},${featuresLat},14/500x300?access_token=pk.eyJ1IjoiYWltZWVseW5ucmFtaXJlejMiLCJhIjoiY2s3MXpjdXhoMGF3YjNtbXl6em9nMWRtbCJ9.atrDeTFuHq0gGUwi5Kq1_w" alt=" Map of ${locations}"></img>`;
+            `<img src= "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/${featuresLong},${featuresLat},14/400x300?access_token=pk.eyJ1IjoiYWltZWVseW5ucmFtaXJlejMiLCJhIjoiY2s3MXpjdXhoMGF3YjNtbXl6em9nMWRtbCJ9.atrDeTFuHq0gGUwi5Kq1_w" alt=" Map of ${locations}"></img>`;
 
             "</div>";
 
