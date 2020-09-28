@@ -1,19 +1,25 @@
-td {
-  border: 1px solid #333;
-  color: white;
-}
-
 thead {
   background-color: #333;
   color: #fff;
 }
-#message{
-  position: relative;
-  max-width: 600px;
-  padding: 3rem;
-  margin: 1rem auto;
+td {
+  background-color: white;
+  color: #333;
+}
+
+#app > div {
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+  margin: auto;
+}
+div > #message {
   background: #f0f0f0;
+  font-size: 1rem;
+  flex: 1 auto;
   text-align: center;
+  margin: 5px;
+  justify-content: center;
 }
 
 /* TYPOGRAPHY DEFAULTS
@@ -31,7 +37,7 @@ body {
 
 h2,
 h3 {
-  font-size: 2.4rem;
+  font-size: 2rem;
 }
 h2 {
   text-transform: uppercase;
@@ -41,16 +47,6 @@ h2 {
   letter-spacing: -0.15rem;
   text-align: center;
   color: #555555;
-}
-@media (min-width: 800px) {
-  body {
-    max-width: 100%;
-    height: auto;
-  }
-  h2 {
-    font-size: 3.2rem;
-    text-align: left;
-  }
 }
 
 h2 strong {
@@ -165,7 +161,6 @@ button[type="submit"]:not(.disabled):active {
   }
 }
 
-
 .notification {
   display: inline-block;
   position: absolute;
@@ -175,9 +170,8 @@ button[type="submit"]:not(.disabled):active {
   border: 2px solid #333333;
   font-size: 1.4rem;
   color: #333333;
-  background-color:white;
+  background-color: white;
   animation: bounce-right 1s;
- 
 }
 .notification::before {
   /* fontawesome update */
@@ -188,6 +182,37 @@ button[type="submit"]:not(.disabled):active {
   top: 0.5rem;
   left: -3rem;
   /* font: 2.1rem FontAwesome; */
-  color:#333333;
- 
+  color: #333333;
+}
+@media only screen and (min-width: 800px) {
+  #app,
+  body,
+  form {
+    max-width: 100%;
+    padding: 2rem;
+    margin: 0rem;
+  }
+  #app > div {
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+    max-width: 80%;
+    font-size: 2.1rem;
+  }
+  thead,
+  th {
+    background-color: #333;
+    color: #fff;
+  }
+  tr,
+  img {
+    background-color: white;
+    color: #333;
+  }
+
+  td {
+    background-color: white;
+    color: #333;
+       font-size: .9rem;
+  }
 }

@@ -80,7 +80,7 @@ Example: Longitude And Latitude, Address, Temperature.
       let featuresLong = data.features[0].center[0];
       //Retrieve Numerical data. Example: Longitude And Latitude, Address, Temperature.
       let locations = data.features[0].place_name;
-      createDiv.innerHTML += `<h4 id='message'><strong> Coordinates: </strong><hr/> latitude: ${featuresLat}, longitude:${featuresLong} <hr/> Location: ${locations}</h4>`;
+      createDiv.innerHTML += `<div id='message'><h3 > Coordinates: </h3 > latitude: ${featuresLat} longitude:${featuresLong} <hr/> <h3 >Location:</h3 > ${locations}</div>`;
       let url =
         "https://api.weather.gov/points/" + featuresLat + "," + featuresLong;
       //get forecast once
@@ -95,11 +95,11 @@ Example: Longitude And Latitude, Address, Temperature.
         .then((response) => response.json())
         .then((weather) => {
           createDiv.innerHTML +=
-            "<h4 id='message'> Relative Location: <hr/>" +
+            "<div id='message'><h3 > Relative Location:</h3 >" +
             weather.properties.relativeLocation.properties.city +
             ", " +
             weather.properties.relativeLocation.properties.state +
-            "</h4>";
+            "</div>";
 
           let forecastUrl = weather.properties.forecast;
 
@@ -175,7 +175,7 @@ Example: Longitude And Latitude, Address, Temperature.
                     data.forecast +
                     "<h3>Location: </h3>" +
                     data.location +
-                    "<h3/>Address: </h3>" +
+                    "<h3/>Input: </h3>" +
                     data.address.toUpperCase();
                   +"</div>";
                 });
