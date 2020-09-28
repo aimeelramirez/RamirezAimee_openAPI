@@ -32,9 +32,10 @@ URL of API source:
 | National Weather Service   | `https://api.weather.gov/gridpoints/BOX/{gridX},{gridY}/forecast`, `https://api.weather.gov/points/{lat},{lon}`|    Numerical |
 
 
-Youtube Link:
+Youtube Link:https://youtu.be/97jzK60C-DE
 
-Remote Link: 
+Remote Link: https://www.dropbox.com/sh/byc4xzpqd9qmlu4/AACr0bXzSywbKvDu9zbyo9zga?dl=0
+
 
 
 ### Extra Credit
