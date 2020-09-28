@@ -38,7 +38,6 @@ Example: Longitude And Latitude, Address, Temperature.
 
   const submitForm = (e) => {
     e.preventDefault();
-
     // to clear tables if to be submitting again
     createDiv.innerHTML = "";
     createTable.innerHTML = "";
@@ -49,7 +48,7 @@ Example: Longitude And Latitude, Address, Temperature.
       "https://api.mapbox.com/geocoding/v5/mapbox.places/" +
       encodeURIComponent(getAddress.value) +
       ".json?access_token=pk.eyJ1IjoiYWltZWVseW5ucmFtaXJlejMiLCJhIjoiY2s3MXpjdXhoMGF3YjNtbXl6em9nMWRtbCJ9.atrDeTFuHq0gGUwi5Kq1_w";
- 
+
     class Geocode {
       constructor(url) {
         this.url = url;
@@ -82,7 +81,7 @@ Example: Longitude And Latitude, Address, Temperature.
 
     //mapbox api
     const mapbox = (data) => {
-     // console.log(data);
+      // console.log(data);
       let featuresLat = data.features[0].center[1];
       let featuresLong = data.features[0].center[0];
       //Retrieve Numerical data. Example: Longitude And Latitude, Address, Temperature.
@@ -211,6 +210,12 @@ Example: Longitude And Latitude, Address, Temperature.
         });
     };
   };
-  //console.log(getSubmitButton)
+  let inputClear = document.querySelector("input");
+  let clickInput = () => {
+    inputClear.value = "";
+    inputClear.placeholder = "";
+  };
+  inputClear.addEventListener("click", clickInput);
+
   getSubmitButton.addEventListener("click", submitForm);
 };
