@@ -80,7 +80,7 @@ Example: Longitude And Latitude, Address, Temperature.
       let featuresLong = data.features[0].center[0];
       //Retrieve Numerical data. Example: Longitude And Latitude, Address, Temperature.
       let locations = data.features[0].place_name;
-      createDiv.innerHTML += `<div id='message'><h3 > Coordinates: </h3 > latitude: ${featuresLat} longitude:${featuresLong} <h3 >Location:</h3 > ${locations}</div>`;
+      createDiv.innerHTML += `<div id='message'><h3 > Coordinates: </h3 > latitude: ${featuresLat} <br/> longitude:${featuresLong} <h3 >Location:</h3 > ${locations}</div>`;
       let url =
         "https://api.weather.gov/points/" + featuresLat + "," + featuresLong;
       //get forecast once
