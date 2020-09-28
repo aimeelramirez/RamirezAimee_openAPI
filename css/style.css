@@ -10,8 +10,6 @@ td {
 #app > div {
   display: flex;
   flex-direction: row;
-  padding: 5px;
-  margin: auto;
 }
 div > #message {
   background: #f0f0f0;

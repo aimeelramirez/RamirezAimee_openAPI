@@ -3,6 +3,9 @@ window.onload = () => {
   /**
    * Create form fields
    */
+     let featuresLat = "";
+       let featuresLong = "";
+        let locations = "";
   let app = document.getElementById("app");
   //Page must contain at least one Heading (H1) element.
   app.innerHTML += `<h1> <strong>Open API: Project + Portfolio Demo</strong></h1>`;
@@ -76,11 +79,12 @@ Example: Longitude And Latitude, Address, Temperature.
 
     //mapbox api
     const mapbox = (data) => {
-      let featuresLat = data.features[0].center[1];
-      let featuresLong = data.features[0].center[0];
+      featuresLat = data.features[0].center[1];
+      featuresLong = data.features[0].center[0];
       //Retrieve Numerical data. Example: Longitude And Latitude, Address, Temperature.
-      let locations = data.features[0].place_name;
-      createDiv.innerHTML += `<div id='message'><h3 > Coordinates: </h3 > latitude: ${featuresLat} <br/> longitude:${featuresLong} <h3 >Location:</h3 > ${locations}</div>`;
+      locations = data.features[0].place_name;
+      createDiv.innerHTML +=
+        `<div id='message'><h3 > Coordinates: </h3 > latitude: ${featuresLat} <br/> longitude:${featuresLong} <h3 >Location:</h3 > ${locations} </div>`;
       let url =
         "https://api.weather.gov/points/" + featuresLat + "," + featuresLong;
       //get forecast once
@@ -91,6 +95,7 @@ Example: Longitude And Latitude, Address, Temperature.
 
     //national weather service api
     const forecast = (data) => {
+ 
       fetch(data.url)
         .then((response) => response.json())
         .then((weather) => {
@@ -99,6 +104,8 @@ Example: Longitude And Latitude, Address, Temperature.
             weather.properties.relativeLocation.properties.city +
             ", " +
             weather.properties.relativeLocation.properties.state +
+            `<img src= "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/${featuresLong},${featuresLat},14/500x300?access_token=pk.eyJ1IjoiYWltZWVseW5ucmFtaXJlejMiLCJhIjoiY2s3MXpjdXhoMGF3YjNtbXl6em9nMWRtbCJ9.atrDeTFuHq0gGUwi5Kq1_w" alt=" Map of ${locations}"></img>`;
+
             "</div>";
 
           let forecastUrl = weather.properties.forecast;
