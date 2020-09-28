@@ -34,6 +34,7 @@ Example: Longitude And Latitude, Address, Temperature.
 
   let createTable = document.createElement("table");
   app.insertAdjacentElement("beforeend", createTable);
+  let getSubmitButton = document.querySelector("button");
 
   const submitForm = (e) => {
     e.preventDefault();
@@ -48,17 +49,25 @@ Example: Longitude And Latitude, Address, Temperature.
       "https://api.mapbox.com/geocoding/v5/mapbox.places/" +
       encodeURIComponent(getAddress.value) +
       ".json?access_token=pk.eyJ1IjoiYWltZWVseW5ucmFtaXJlejMiLCJhIjoiY2s3MXpjdXhoMGF3YjNtbXl6em9nMWRtbCJ9.atrDeTFuHq0gGUwi5Kq1_w";
-
+ 
     class Geocode {
       constructor(url) {
         this.url = url;
       }
       loadData() {
         fetch(this.url).then((response) => {
-          response.json().then((data) => {
-            mapbox(data);
-            //return data;
-          });
+          response
+            .json()
+            .then((data) => {
+              mapbox(data);
+              //return data;
+            })
+            .catch(function () {
+              console.log("error");
+              getAddress.value = "";
+              getAddress.placeholder =
+                "Sorry that location is not found, please try again.";
+            });
         });
       }
       loadForecast() {
@@ -73,6 +82,7 @@ Example: Longitude And Latitude, Address, Temperature.
 
     //mapbox api
     const mapbox = (data) => {
+     // console.log(data);
       let featuresLat = data.features[0].center[1];
       let featuresLong = data.features[0].center[0];
       //Retrieve Numerical data. Example: Longitude And Latitude, Address, Temperature.
@@ -167,7 +177,7 @@ Example: Longitude And Latitude, Address, Temperature.
               )
                 .then((response) => response.json())
                 .then((data) => {
-                  console.log(data);
+                  //console.log(data);
                   // createDiv.setAttribute("id", "messageId");
                   // let getIdMessage = document.getElementById("messageId");
                   createDiv.innerHTML +=
@@ -201,5 +211,6 @@ Example: Longitude And Latitude, Address, Temperature.
         });
     };
   };
-  document.addEventListener("click", submitForm);
+  //console.log(getSubmitButton)
+  getSubmitButton.addEventListener("click", submitForm);
 };
