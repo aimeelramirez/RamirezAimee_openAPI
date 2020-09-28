@@ -20,10 +20,7 @@ window.onload = () => {
 
   /**
  * Create table and get information
- * from https://weather-gov.github.io/api/gridpoints
- * api.weather.gov
  * Retrieve text (string) based data.
-
 Example: User Avatar, Map Imagery, Logos
 Retrieve Numerical data.
 Example: Longitude And Latitude, Address, Temperature.
@@ -59,7 +56,6 @@ Example: Longitude And Latitude, Address, Temperature.
             .json()
             .then((data) => {
               mapbox(data);
-              //return data;
             })
             .catch(function () {
               console.log("error");
@@ -72,7 +68,6 @@ Example: Longitude And Latitude, Address, Temperature.
       loadForecast() {
         fetch(this.url).then((data2) => {
           forecast(data2);
-          //return data;
         });
       }
     }
@@ -81,7 +76,6 @@ Example: Longitude And Latitude, Address, Temperature.
 
     //mapbox api
     const mapbox = (data) => {
-      // console.log(data);
       let featuresLat = data.features[0].center[1];
       let featuresLong = data.features[0].center[0];
       //Retrieve Numerical data. Example: Longitude And Latitude, Address, Temperature.
@@ -94,14 +88,12 @@ Example: Longitude And Latitude, Address, Temperature.
 
       getFetchForecast.loadForecast(url);
     };
-    //national weather service api
 
+    //national weather service api
     const forecast = (data) => {
-      // console.log(data.url)
       fetch(data.url)
         .then((response) => response.json())
         .then((weather) => {
-          //   console.log(weather);
           createDiv.innerHTML +=
             "<h4 id='message'> Relative Location: <hr/>" +
             weather.properties.relativeLocation.properties.city +
@@ -168,6 +160,7 @@ Example: Longitude And Latitude, Address, Temperature.
                   weatherDaily.properties.periods[i].detailedForecast +
                   "</td>";
               }
+
               //darksky api
               const location = getAddress.value;
               fetch(
@@ -176,9 +169,6 @@ Example: Longitude And Latitude, Address, Temperature.
               )
                 .then((response) => response.json())
                 .then((data) => {
-                  //console.log(data);
-                  // createDiv.setAttribute("id", "messageId");
-                  // let getIdMessage = document.getElementById("messageId");
                   createDiv.innerHTML +=
                     "<div id='message' style='width:50%;'>" +
                     " <h3>Daily Forecast:</h3> <br/>" +
@@ -189,17 +179,6 @@ Example: Longitude And Latitude, Address, Temperature.
                     data.address.toUpperCase();
                   +"</div>";
                 });
-
-              //  setTimeout(() => {
-              //    // console.log(document.querySelector("notification"));
-              //    createDiv.innerHTML = "";
-              //  }, 5000);
-
-              // let getTableFocus = document.querySelector("table");
-              // getTableFocus.id = "tableFocus";
-              // let getFocus = document.getElementById("tableFocus");
-              //console.log(getFocus.scrollIntoView(true))
-              // getFocus.scrollIntoView(true);
             });
         })
         .catch(function () {
