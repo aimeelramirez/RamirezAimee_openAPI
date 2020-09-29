@@ -3,12 +3,12 @@ window.onload = () => {
   /**
    * Create form fields
    */
-     let featuresLat = "";
-       let featuresLong = "";
-        let locations = "";
+  let featuresLat = "";
+  let featuresLong = "";
+  let locations = "";
   let app = document.getElementById("app");
   //Page must contain at least one Heading (H1) element.
-  app.innerHTML += `<h1> <strong>Open API: Project + Portfolio Demo</strong></h1>`;
+  app.innerHTML += `<h1><strong>Open API: Project + Portfolio Demo</strong></h1>`;
 
   let createForm = document.createElement("form");
   let createInput = document.createElement("input");
@@ -44,8 +44,7 @@ Example: Longitude And Latitude, Address, Temperature.
 
     let getAddress = document.getElementById("address");
 
-    const url =
-      "https://api.mapbox.com/geocoding/v5/mapbox.places/" +
+    const url = "https://api.mapbox.com/geocoding/v5/mapbox.places/" +
       encodeURIComponent(getAddress.value) +
       ".json?access_token=pk.eyJ1IjoiYWltZWVseW5ucmFtaXJlejMiLCJhIjoiY2s3MXpjdXhoMGF3YjNtbXl6em9nMWRtbCJ9.atrDeTFuHq0gGUwi5Kq1_w";
 
@@ -85,11 +84,9 @@ Example: Longitude And Latitude, Address, Temperature.
       locations = data.features[0].place_name;
       createDiv.innerHTML +=
         `<div id='message'><h3> Coordinates: </h3 > latitude: ${featuresLat} <br/> longitude:${featuresLong} <h3 >Location:</h3 > ${locations} </div>`;
-      let url =
-        "https://api.weather.gov/points/" + featuresLat + "," + featuresLong;
+      let url = "https://api.weather.gov/points/" + featuresLat + "," + featuresLong;
       //get forecast once
       let getFetchForecast = new Geocode(url);
-
       getFetchForecast.loadForecast(url);
     };
 
@@ -101,11 +98,9 @@ Example: Longitude And Latitude, Address, Temperature.
         .then((weather) => {
           createDiv.innerHTML +=
             "<div id='message'><h3 > Relative Location:</h3 >" +
-            weather.properties.relativeLocation.properties.city +
-            ", " +
+            weather.properties.relativeLocation.properties.city + ", " +
             weather.properties.relativeLocation.properties.state +
-            `<img src= "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/${featuresLong},${featuresLat},14/400x300?access_token=pk.eyJ1IjoiYWltZWVseW5ucmFtaXJlejMiLCJhIjoiY2s3MXpjdXhoMGF3YjNtbXl6em9nMWRtbCJ9.atrDeTFuHq0gGUwi5Kq1_w" alt=" Map of ${locations}"></img>`;
-
+            `<img src= "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/${featuresLong},${featuresLat},14/400x300?access_token=pk.eyJ1IjoiYWltZWVseW5ucmFtaXJlejMiLCJhIjoiY2s3MXpjdXhoMGF3YjNtbXl6em9nMWRtbCJ9.atrDeTFuHq0gGUwi5Kq1_w" alt=" Map of ${locations}"></img>`+
             "</div>";
 
           let forecastUrl = weather.properties.forecast;
@@ -133,12 +128,8 @@ Example: Longitude And Latitude, Address, Temperature.
                 let createTr = document.createElement("tr");
                 createTable.insertAdjacentElement("beforeend", createTr);
 
-                let start = new Date(
-                  weatherDaily.properties.periods[i].startTime
-                );
-                let ended = new Date(
-                  weatherDaily.properties.periods[i].endTime
-                );
+                let start = new Date(weatherDaily.properties.periods[i].startTime);
+                let ended = new Date(weatherDaily.properties.periods[i].endTime);
                 createTr.innerHTML +=
                   //Retrieve Images.
                   "<img src='" +
@@ -170,10 +161,7 @@ Example: Longitude And Latitude, Address, Temperature.
 
               //darksky api
               const location = getAddress.value;
-              fetch(
-                "https://dry-earth-81823.herokuapp.com/weather?address=" +
-                  location
-              )
+              fetch("https://dry-earth-81823.herokuapp.com/weather?address=" + location)
                 .then((response) => response.json())
                 .then((data) => {
                   createDiv.innerHTML +=
@@ -191,8 +179,7 @@ Example: Longitude And Latitude, Address, Temperature.
         .catch(function () {
           console.log("error");
           getAddress.value = "";
-          getAddress.placeholder =
-            "Sorry that location is not found, please try again.";
+          getAddress.placeholder ="Sorry that location is not found, please try again.";
         });
     };
   };
